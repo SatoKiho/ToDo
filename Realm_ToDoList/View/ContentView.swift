@@ -7,9 +7,10 @@ import RealmSwift
 struct ContentView: View {
     @State var taskData = [(title: "aa", completed: false),
                            (title: "aa", completed: true)]
-//    sheet(モーダル)用のbool
-    @State var isPlesentedModal: Bool = false
-//        @ObservableObject var viewModel = $ToDoModel.shared
+//    sheet(モーダル)用
+    @StateObject var modelData = ListViewModel()
+    
+    
     
     var body: some View {
         VStack {
@@ -26,23 +27,34 @@ struct ContentView: View {
                                 .foregroundColor(.primary)
                         }
                     }
-                    
+                    //  スワイプで操作系
+                    .swipeActions(edge: .trailing) {
+                        Button(action: {}, label: {
+                            Image(systemName: "trash")
+                        })
+                        .tint(.red)
+                    }
+                    .swipeActions(edge: .leading) {
+                        Button(action: {}, label: {
+                            Image(systemName: "checkmark.circle.fill")
+                        })
+                        .tint(.green)
+                    }
                     
                 }
                 //  Navi＆Toolbar
                 .navigationTitle("ToDo List")
                 .toolbar {
                     ToolbarItem(placement: .navigationBarTrailing) {
-                        Button(action: {
-                            self.isPlesentedModal.toggle()
-                        }, label: {
+                        Button(action: {modelData.openNewPage.toggle()}){
                             HStack(spacing: 2) {
                                 Image(systemName: "plus")
                                 Text("追加")
                             }
-                        })
-                        .sheet(isPresented: $isPlesentedModal) {
+                        }
+                        .sheet(isPresented: $modelData.openNewPage) {
                             AddView()
+                                .environmentObject(modelData)
                         }
                     }
                 }
