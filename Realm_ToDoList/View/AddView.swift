@@ -2,7 +2,9 @@ import SwiftUI
 import RealmSwift
 
 struct AddView: View {
-    @ObservedObject var viewModel = ListViewModel()
+//    @ObservedObject var viewModel = ContentViewModel()
+    @ObservedObject var viewModel = ContentViewModel.shared
+
     @Environment(\.isPresented) var isPresented
     @Environment(\.dismiss) var dismiss
     
@@ -28,7 +30,7 @@ struct AddView: View {
             }
             .listStyle(GroupedListStyle())
             
-            //  ↓titleと左右の機能
+            //  ↓titleとキャンセル
             .navigationTitle("新規作成")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
@@ -39,10 +41,16 @@ struct AddView: View {
                         Text("キャンセル")
                     })
                 }
-                //  入力されたら活性化する仕様いれる
+                
+                //  追加
                 ToolbarItem(placement: .primaryAction) {
                     Button(action: {
-                        
+//                        viewModel.addTodo()
+                        if ($viewModel.updatingTodo == nil) {
+                            viewModel.addTodo()
+                        } else {
+                            viewModel.updatingToDo
+                        }
                     }, label: {
                         Text("追加")
                     })

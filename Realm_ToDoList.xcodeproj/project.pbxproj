@@ -15,7 +15,7 @@
 		882CC4542ADCCA62000EF437 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 882CC4532ADCCA62000EF437 /* RealmSwift */; };
 		882CC4562ADCED39000EF437 /* ToDoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882CC4552ADCED39000EF437 /* ToDoModel.swift */; };
 		882CC4582ADD0EF7000EF437 /* AddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882CC4572ADD0EF7000EF437 /* AddView.swift */; };
-		882CC45D2ADD1D33000EF437 /* ListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882CC45C2ADD1D33000EF437 /* ListViewModel.swift */; };
+		882CC45D2ADD1D33000EF437 /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882CC45C2ADD1D33000EF437 /* ContentViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,7 +26,7 @@
 		882CC4492ADCC9CD000EF437 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		882CC4552ADCED39000EF437 /* ToDoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoModel.swift; sourceTree = "<group>"; };
 		882CC4572ADD0EF7000EF437 /* AddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddView.swift; sourceTree = "<group>"; };
-		882CC45C2ADD1D33000EF437 /* ListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewModel.swift; sourceTree = "<group>"; };
+		882CC45C2ADD1D33000EF437 /* ContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,7 +99,7 @@
 		882CC45B2ADD1B86000EF437 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				882CC45C2ADD1D33000EF437 /* ListViewModel.swift */,
+				882CC45C2ADD1D33000EF437 /* ContentViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -181,7 +181,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				882CC45D2ADD1D33000EF437 /* ListViewModel.swift in Sources */,
+				882CC45D2ADD1D33000EF437 /* ContentViewModel.swift in Sources */,
 				882CC4582ADD0EF7000EF437 /* AddView.swift in Sources */,
 				882CC4452ADCC9CB000EF437 /* ContentView.swift in Sources */,
 				882CC4432ADCC9CB000EF437 /* Realm_ToDoListApp.swift in Sources */,
