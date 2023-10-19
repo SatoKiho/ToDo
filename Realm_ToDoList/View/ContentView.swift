@@ -1,67 +1,63 @@
 import SwiftUI
 import RealmSwift
 
-//Realm取得
-
-
 struct ContentView: View {
-    @State var taskData = [(title: "aa", desc: "aa" , completed: false),
-                           (title: "aa", desc: "aa" , completed: true)]
-//    sheet(モーダル)用
+    //    sheet(モーダル)用
     @StateObject var modelData = ContentViewModel()
     @ObservedObject var viewModel = ContentViewModel.shared
+    //    @State var taskData = [(title: viewModel.title, desc: viewModel.desc , completed: false)]
     
     
     var body: some View {
         VStack {
             NavigationView {
-//                List(0..<taskData.count, id: \.self) { index in
-//                    Button {
-//                        taskData[index].completed.toggle()
-//                    } label: {
-//                        HStack(spacing: 12) {
-//                            Image(systemName: taskData[index].completed ? "checkmark.circle.fill" : "circle")
-//                                .foregroundColor(taskData[index].completed ? .green : .gray)
-//                            VStack {
-//                                Text(taskData[index].title)
-//                                    .foregroundColor(.primary)
-//                                Text(taskData[index].desc)
-//                                    .foregroundStyle(.gray)
-//                                    .font(.caption)
-//                            }
-//                        }
-//                    }
-//                    //  スワイプで操作系
-//                    .swipeActions(edge: .trailing) {
-//                        Button(action: {
-////                            ToDoItem.deleteTodo(todo: ToDoItem)
-//                        }, label: {
-//                            Image(systemName: "trash")
-//                        })
-//                        .tint(.red)
-//                    }
-//                    .swipeActions(edge: .leading) {
-//                        Button(action: {}, label: {
-//                            Image(systemName: "checkmark.circle.fill")
-//                        })
-//                        .tint(.green)
-//                    }
-//                    
-//                }
-           
-                    VStack {
-                        List {
-                            ForEach(modelData.cards) { card in
-                                VStack {
-                                    Text(card.title)
-                                    Text(card.desc)
-                                }
-                                .frame(maxWidth: .infinity)
+                List {
+                    ForEach(viewModel.todos) { todo in
+                        VStack(alignment: .leading, spacing: 4) {
+                            //  Button {
+                            //                                    taskData[index].completed.toggle()
+                            //                                } label: {
+                            //                                    HStack(spacing: 12) {
+                            //                                        Image(systemName: taskData[index].completed ? "checkmark.circle.fill" : "circle")
+                            //                                            .foregroundColor(taskData[index].completed ? .green : .gray)
+                            //                                        VStack {
+                            //                                            Text(taskData[index].title)
+                            //                                                .foregroundColor(.primary)
+                            //                                            Text(taskData[index].desc)
+                            //                                                .foregroundStyle(.gray)
+                            //                                                .font(.caption)
+                            //                                        }
+                            //                                    }
+                            //                                }
+                            Text(todo.title)
+                            Text(todo.desc)
+                                .font(.caption)
+                                .foregroundColor(.gray)
+                        }
+                        //  スワイプで操作系
+                        .swipeActions(edge: .trailing, allowsFullSwipe: false) {
+                            Button {
+                                viewModel.deleteTodo(todo: todo)
+                            } label: {
+                                Image(systemName: "trash")
                             }
+                            .tint(.red)
+                        }
+                        .swipeActions(edge: .leading) {
+                            Button {
+                                viewModel.title = todo.title
+                                viewModel.desc = todo.desc
+                                
+                            } label: {
+                                Image(systemName: "pencil")
+                            }
+                            .tint(.green)
                         }
                     }
+                    
+                }
                 
-     
+                
                 //  Navi＆Toolbar
                 .navigationTitle("ToDo List")
                 .toolbar {
@@ -80,12 +76,12 @@ struct ContentView: View {
                 }
             }
             
-
-            
         }
+        
     }
-    
 }
+
+
 
 #Preview {
     ContentView()

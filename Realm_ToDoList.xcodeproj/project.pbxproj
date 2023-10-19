@@ -16,6 +16,7 @@
 		882CC4562ADCED39000EF437 /* ToDoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882CC4552ADCED39000EF437 /* ToDoModel.swift */; };
 		882CC4582ADD0EF7000EF437 /* AddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882CC4572ADD0EF7000EF437 /* AddView.swift */; };
 		882CC45D2ADD1D33000EF437 /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882CC45C2ADD1D33000EF437 /* ContentViewModel.swift */; };
+		88AE4A032AE130090048D491 /* EditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AE4A022AE130090048D491 /* EditView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +28,7 @@
 		882CC4552ADCED39000EF437 /* ToDoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoModel.swift; sourceTree = "<group>"; };
 		882CC4572ADD0EF7000EF437 /* AddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddView.swift; sourceTree = "<group>"; };
 		882CC45C2ADD1D33000EF437 /* ContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModel.swift; sourceTree = "<group>"; };
+		88AE4A022AE130090048D491 /* EditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +93,7 @@
 			isa = PBXGroup;
 			children = (
 				882CC4442ADCC9CB000EF437 /* ContentView.swift */,
+				88AE4A022AE130090048D491 /* EditView.swift */,
 				882CC4572ADD0EF7000EF437 /* AddView.swift */,
 			);
 			path = View;
@@ -183,6 +186,7 @@
 			files = (
 				882CC45D2ADD1D33000EF437 /* ContentViewModel.swift in Sources */,
 				882CC4582ADD0EF7000EF437 /* AddView.swift in Sources */,
+				88AE4A032AE130090048D491 /* EditView.swift in Sources */,
 				882CC4452ADCC9CB000EF437 /* ContentView.swift in Sources */,
 				882CC4432ADCC9CB000EF437 /* Realm_ToDoListApp.swift in Sources */,
 				882CC4562ADCED39000EF437 /* ToDoModel.swift in Sources */,

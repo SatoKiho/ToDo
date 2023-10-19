@@ -26,10 +26,13 @@ class ContentViewModel: ObservableObject {
     }
     
     func addTodo() {
+//        if title == "" || desc == "" { return }
         ToDoItem.addTodo(title: title, desc: desc)
         self.title = ""
         self.desc = ""
         fetchTodos()
+        
+//        presentation.wrappedValue.dismiss()
     }
     
     func updataTodo() {
@@ -39,6 +42,21 @@ class ContentViewModel: ObservableObject {
         updatingToDo = nil
         fetchTodos()
     }
+    
+//    func updataTodo() {
+//        guard let todoToUpdate = updatingToDo else {
+//            // もしくは適切な処理を行う
+//            print("Error: updatingToDo is nil")
+//            return
+//        }
+//
+//        ToDoItem.updateTodo(todo: todoToUpdate, newTitle: self.title, newDesc: self.desc)
+//        self.title = ""
+//        self.desc = ""
+//        updatingToDo = nil
+//        fetchTodos()
+//    }
+
     
     func deleteTodo(todo: ToDoItem) {
         ToDoItem.deleteTodo(todo: todo)
