@@ -31,7 +31,7 @@ struct AddView: View {
             .listStyle(GroupedListStyle())
             
             //  ↓titleとキャンセル
-            .navigationTitle("新規作成")
+            .navigationTitle("Todo List"/*viewModel.updatingToDo == nil ? "新規作成" : ""*/)
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
@@ -56,11 +56,14 @@ struct AddView: View {
                 //                }
                 ToolbarItem(placement: .primaryAction) {
                     Button(action: {
-                        //  もしnilなら新しいTodoを追加する操作
-                        if (viewModel.updatingToDo == nil) {
-                            viewModel.addTodo()
-                        } else {
-                            viewModel.updataTodo()
+                        if !viewModel.title.isEmpty || !viewModel.desc.isEmpty {
+                            //  もしnilなら新しいTodoを追加する操作
+                            if (viewModel.updatingToDo == nil) {
+                                viewModel.addTodo()
+                            } else {
+                                viewModel.updataTodo()
+                            }
+                            dismiss()
                         }
 //                        viewModel.openNewPage = false
                     }, label: {

@@ -27,7 +27,6 @@ extension ToDoItem {
         let todo = ToDoItem()
         todo.title = title
         todo.desc = desc
-        
         guard let localRealm = try? Realm() else { return }
         try? localRealm.write {
             localRealm.add(todo)

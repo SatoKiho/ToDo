@@ -6,34 +6,32 @@ struct ContentView: View {
     @StateObject var modelData = ContentViewModel()
     @ObservedObject var viewModel = ContentViewModel.shared
     //    @State var taskData = [(title: viewModel.title, desc: viewModel.desc , completed: false)]
-    
-    
+    //  edit用の真偽値
+//    @State var isshowingSheet = false
+  
     var body: some View {
         VStack {
             NavigationView {
                 List {
                     ForEach(viewModel.todos) { todo in
-                        VStack(alignment: .leading, spacing: 4) {
-                            //  Button {
-                            //                                    taskData[index].completed.toggle()
-                            //                                } label: {
-                            //                                    HStack(spacing: 12) {
-                            //                                        Image(systemName: taskData[index].completed ? "checkmark.circle.fill" : "circle")
-                            //                                            .foregroundColor(taskData[index].completed ? .green : .gray)
-                            //                                        VStack {
-                            //                                            Text(taskData[index].title)
-                            //                                                .foregroundColor(.primary)
-                            //                                            Text(taskData[index].desc)
-                            //                                                .foregroundStyle(.gray)
-                            //                                                .font(.caption)
-                            //                                        }
-                            //                                    }
-                            //                                }
-                            Text(todo.title)
-                            Text(todo.desc)
-                                .font(.caption)
-                                .foregroundColor(.gray)
-                        }
+                        Button(action: {
+//                            modelData.openNewPage.toggle()
+                            modelData.openNewPage.toggle()
+                            //  ↑ここに追加とほぼ同じ処理かける→入力された内容が反映させるようにする
+                        }, label: {
+                            HStack {
+                                VStack(alignment: .leading, spacing: 4) {                  Text(todo.title)
+                                        .foregroundColor(.black)
+                                    Text(todo.desc)
+                                        .font(.caption)
+                                        .foregroundColor(.gray)
+                                }
+                                Spacer()
+                                Image(systemName: "chevron.right")
+                                    .foregroundColor(.gray)
+                            }
+                        })
+                                                
                         //  スワイプで操作系
                         .swipeActions(edge: .trailing, allowsFullSwipe: false) {
                             Button {
@@ -54,7 +52,6 @@ struct ContentView: View {
                             .tint(.green)
                         }
                     }
-                    
                 }
                 
                 

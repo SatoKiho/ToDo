@@ -8,6 +8,7 @@ class ContentViewModel: ObservableObject {
     @Published var todos: [ToDoItem] = []
     @Published var cards : [ToDoItem] = []
     @Published var openNewPage = false
+    @Published var isshowAddView = false
 
     
 //    func fetchData() {
