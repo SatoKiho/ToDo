@@ -31,7 +31,7 @@ struct AddView: View {
             .listStyle(GroupedListStyle())
             
             //  ↓titleとキャンセル
-            .navigationTitle("Todo List"/*viewModel.updatingToDo == nil ? "新規作成" : ""*/)
+            .navigationTitle(viewModel.updatingTodo == nil ? "ToDo作成" : "ToDoを編集")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
@@ -41,24 +41,12 @@ struct AddView: View {
                         Text("キャンセル")
                     })
                 }
-                
-                //  追加
-                //                ToolbarItem(placement: .primaryAction) {
-                //                    Button(action: {
-                //                        if ($viewModel.updatingToDo == nil) {
-                //                            viewModel.addTodo()
-                //                        } else {
-                //                            viewModel.updataTodo()
-                //                        }
-                //                    }, label: {
-                //                        Text("追加")
-                //                    })
-                //                }
+
                 ToolbarItem(placement: .primaryAction) {
                     Button(action: {
                         if !viewModel.title.isEmpty || !viewModel.desc.isEmpty {
                             //  もしnilなら新しいTodoを追加する操作
-                            if (viewModel.updatingToDo == nil) {
+                            if (viewModel.updatingTodo == nil) {
                                 viewModel.addTodo()
                             } else {
                                 viewModel.updataTodo()
@@ -68,6 +56,7 @@ struct AddView: View {
 //                        viewModel.openNewPage = false
                     }, label: {
                         Text("追加")
+                            .foregroundColor(viewModel.title.isEmpty && viewModel.desc.isEmpty ? .gray : .blue)
                     })
                 }
                 

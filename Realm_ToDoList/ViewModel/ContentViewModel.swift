@@ -4,19 +4,11 @@ import RealmSwift
 class ContentViewModel: ObservableObject {
     @Published var title: String = ""
     @Published var desc: String = ""
-    @Published var updatingToDo: ToDoItem? = nil
+//  ↓初期値はnil、updatingToDoが初期状態で値を持たないことを表す
+    @Published var updatingTodo: ToDoItem? = nil
     @Published var todos: [ToDoItem] = []
     @Published var cards : [ToDoItem] = []
     @Published var openNewPage = false
-    @Published var isshowAddView = false
-
-    
-//    func fetchData() {
-//        guard let dbRef = try! Realm() else { return }
-//        let results = dbRef.objects(ToDoItem.self)
-//        self.todoItem = results.compactMap({(ToDoItem) -> ToDoItem? in
-//        return todoItem})
-//    }
     
     init () {
         fetchTodos()
@@ -25,40 +17,23 @@ class ContentViewModel: ObservableObject {
     func fetchTodos() {
         self.todos = ToDoItem.fetchAllTodo()!
     }
-    
+    // 追加
     func addTodo() {
 //        if title == "" || desc == "" { return }
         ToDoItem.addTodo(title: title, desc: desc)
         self.title = ""
         self.desc = ""
         fetchTodos()
-        
-//        presentation.wrappedValue.dismiss()
     }
-    
+    // 更新
     func updataTodo() {
-        ToDoItem.updateTodo(todo: updatingToDo!, newTitle: self.title, newDesc: self.desc)
+        ToDoItem.updateTodo(todo: updatingTodo!, newTitle: self.title, newDesc: self.desc)
         self.title = ""
         self.desc = ""
-        updatingToDo = nil
+        updatingTodo = nil
         fetchTodos()
     }
-    
-//    func updataTodo() {
-//        guard let todoToUpdate = updatingToDo else {
-//            // もしくは適切な処理を行う
-//            print("Error: updatingToDo is nil")
-//            return
-//        }
-//
-//        ToDoItem.updateTodo(todo: todoToUpdate, newTitle: self.title, newDesc: self.desc)
-//        self.title = ""
-//        self.desc = ""
-//        updatingToDo = nil
-//        fetchTodos()
-//    }
-
-    
+    //  削除
     func deleteTodo(todo: ToDoItem) {
         ToDoItem.deleteTodo(todo: todo)
         fetchTodos()
@@ -72,9 +47,6 @@ class ContentViewModel: ObservableObject {
     static let shared = ContentViewModel()
 }
 
-
-//入力欄がnilのやつ書く
-//
 
 
 

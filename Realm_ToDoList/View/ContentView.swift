@@ -2,12 +2,7 @@ import SwiftUI
 import RealmSwift
 
 struct ContentView: View {
-    //    sheet(モーダル)用
-    @StateObject var modelData = ContentViewModel()
     @ObservedObject var viewModel = ContentViewModel.shared
-    //    @State var taskData = [(title: viewModel.title, desc: viewModel.desc , completed: false)]
-    //  edit用の真偽値
-//    @State var isshowingSheet = false
   
     var body: some View {
         VStack {
@@ -15,8 +10,11 @@ struct ContentView: View {
                 List {
                     ForEach(viewModel.todos) { todo in
                         Button(action: {
-//                            modelData.openNewPage.toggle()
-                            modelData.openNewPage.toggle()
+                            viewModel.updatingTodo = todo
+                            viewModel.title = todo.title
+                            viewModel.desc = todo.desc
+                            viewModel.openNewPage.toggle()
+//                            viewModel.openNewPage ? viewModel.addTodo() : viewModel.updataTodo()
                             //  ↑ここに追加とほぼ同じ処理かける→入力された内容が反映させるようにする
                         }, label: {
                             HStack {
@@ -41,16 +39,6 @@ struct ContentView: View {
                             }
                             .tint(.red)
                         }
-                        .swipeActions(edge: .leading) {
-                            Button {
-                                viewModel.title = todo.title
-                                viewModel.desc = todo.desc
-                                
-                            } label: {
-                                Image(systemName: "pencil")
-                            }
-                            .tint(.green)
-                        }
                     }
                 }
                 
@@ -59,15 +47,14 @@ struct ContentView: View {
                 .navigationTitle("ToDo List")
                 .toolbar {
                     ToolbarItem(placement: .navigationBarTrailing) {
-                        Button(action: {modelData.openNewPage.toggle()}){
+                        Button(action: {viewModel.openNewPage.toggle()}){
                             HStack(spacing: 2) {
                                 Image(systemName: "plus")
-                                Text("追加")
+                                Text("新規作成")
                             }
                         }
-                        .sheet(isPresented: $modelData.openNewPage) {
+                        .sheet(isPresented: $viewModel.openNewPage) {
                             AddView()
-                                .environmentObject(modelData)
                         }
                     }
                 }
