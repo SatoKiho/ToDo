@@ -38,12 +38,12 @@ class ContentViewModel: ObservableObject {
         ToDoItem.deleteTodo(todo: todo)
         fetchTodos()
     }
+    //  クリア（既リストキャンセル→新規作成時に空状態）
+    func clearTodo() {
+        self.title = ""
+        self.desc = ""
+    }
     
-
-//        guard let dbRef = try! Realm() else { return }
-//        try? dbRef.write{
-//            dbRef.add(todoItem)
-//        }
     static let shared = ContentViewModel()
 }
 

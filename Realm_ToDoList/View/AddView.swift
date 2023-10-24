@@ -36,6 +36,7 @@ struct AddView: View {
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
                     Button(action: {
+                        viewModel.clearTodo()
                         dismiss()
                     }, label: {
                         Text("キャンセル")

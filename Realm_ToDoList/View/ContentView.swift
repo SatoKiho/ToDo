@@ -18,7 +18,8 @@ struct ContentView: View {
                             //  ↑ここに追加とほぼ同じ処理かける→入力された内容が反映させるようにする
                         }, label: {
                             HStack {
-                                VStack(alignment: .leading, spacing: 4) {                  Text(todo.title)
+                                VStack(alignment: .leading, spacing: 4) {                  
+                                    Text(todo.title)
                                         .foregroundColor(.black)
                                     Text(todo.desc)
                                         .font(.caption)
